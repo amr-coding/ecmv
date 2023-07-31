@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Dashboard;
+use App\Livewire\Admin\Login;
+use App\Livewire\Products;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin/dashboard/', function () {
     return view('admin/admin');
 })->name('admin');
+
+
 //route to admin login.blade.php file under admin folder
 Route::get('/admin/login', function () {
     return view('admin/login');
 })->name('admin.login');
+
+
 require __DIR__ . '/auth.php';
