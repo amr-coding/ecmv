@@ -22,8 +22,6 @@
                         class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 dark:border-indigo-600 text-sm font-medium leading-5 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">{{ __('Dashboard') }}</a>
                     <a href="{{ route('admin') }}"
                         class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">{{ __('Admin') }}</a>
-                    <a wire:navigate href="{{ route('products') }}"
-                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">{{ __('Products') }}</a>
 
                 </div>
             </div>

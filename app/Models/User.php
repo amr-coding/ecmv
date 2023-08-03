@@ -19,6 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
+        'phone_number',
+        'zip_code',
         'email',
         'password',
     ];
@@ -42,4 +45,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
+    }
+    //  User can like many Products (Many-to-Many)
+    public function likedProducts()
+    {
+        return $this->belongsToMany(Product::class, 'likes');
+    }
+    //  User can reserve many Products (One-to-Many)
+    public function reservedProducts()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    // User can send many Messages (One-to-Many)
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+    // User can receive many Messages (One-to-Many)
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+    // User can flag many Products (One-to-Many)
+    public function flaggedProducts()
+    {
+        return $this->belongsToMany(Product::class, 'flags')->withPivot('flag_reason');
+    }
 }
