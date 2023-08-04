@@ -32,9 +32,9 @@ return new class extends Migration
             $table->boolean('is_verified_phone')->default(false);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-
-
-
+            // role is either 'admin' or 'user'
+            $table->string('role')->default('user');
+            $table->integer('seller')->default('0');
             $table->string('password');
             $table->timestamps();
         });

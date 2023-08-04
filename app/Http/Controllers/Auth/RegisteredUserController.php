@@ -43,7 +43,8 @@ class RegisteredUserController extends Controller
             // 'full_address_state' => ['required', 'string', 'max:255'],
             // 'shop_name' => ['nullable', 'required_if:is_seller,true', 'string', 'max:255'],
         ]);
-
+        $is_seller = $request->has('is_seller') ? 1 : 0;
+        // dd($is_seller);
         $user = User::create([
             'name' => $request['name'],
             'username' => $request['username'],
@@ -51,7 +52,10 @@ class RegisteredUserController extends Controller
             'zip_code' => $request['zip_code'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
+            'seller' => $request->has('is_seller') ? 1 : 0,
         ]);
+
+        // dd($request->has('is_seller') ? 1 : 0);
         $closedDatesString = $request->input('closed_dates');
         $closedDatesArray = explode(', ', $closedDatesString);
 
@@ -113,6 +117,8 @@ class RegisteredUserController extends Controller
         }
 
         event(new Registered($user));
+
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

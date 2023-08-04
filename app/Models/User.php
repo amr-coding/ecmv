@@ -24,6 +24,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number',
         'zip_code',
         'email',
+        'seller',
+        'role',
         'password',
     ];
 
@@ -75,5 +77,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function flaggedProducts()
     {
         return $this->belongsToMany(Product::class, 'flags')->withPivot('flag_reason');
+    }
+    // user is admin
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 }
